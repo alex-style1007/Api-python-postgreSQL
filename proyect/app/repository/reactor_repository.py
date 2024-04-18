@@ -4,6 +4,19 @@ from model.reactor import Reactor
 class ReactorRepository:
     def __init__(self):
         self.connection=connect_to_database()
+    
+    def get_all_reactores(self):
+        try:
+            cursor=self.connection.cursor()
+            cursor.execute("""
+                           SELECT * FROM reactores
+                           """)
+            reactors_data=cursor.fetchall()
+            reactors=[Reactor(*data) for data in reactors_data]
+            return reactors
+        except Exception as e:
+            print("Error consultando todos los reactores",e)
+            return None
         
     def create_reactor(self,reactor):
         try:
@@ -20,6 +33,7 @@ class ReactorRepository:
             print ("Error creando el reactor:",e)
             self.connection.rollback()
             return None
+        
     def reactor_by_id(self,reactor_id):
         try:
             cursor=self.connection.cursor()
@@ -33,3 +47,4 @@ class ReactorRepository:
         except Exception as e:
             print("Error consultando la informacion de el reactor con id:",e)
             return None
+        
