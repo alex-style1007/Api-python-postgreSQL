@@ -60,4 +60,30 @@ class ReactorRepository:
         except Exception as e:
             print("Error fetching all reactor types:", e)
             return None
-           
+    
+    #consultar el tipo por id y traer todos los reactores asociados a ese tipo
+    def get_reactors_by_type_id(self, reactor_id):
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                SELECT r.nombre_reactor, r.tipo_reactor, r.potencia_termica, r.estado_reactor, r.fecha_primera_reaccion, r.ciudad, r.pais_id
+                FROM reactores r
+                JOIN reactores rt ON r.tipo_reactor = rt.tipo_reactor
+                WHERE r.reactor_id = %s
+            """, (reactor_id,))
+            reactor_data = cursor.fetchone()
+            if reactor_data:
+                # El primer elemento es el nombre del reactor
+                nombre_reactor = reactor_data[0]
+                # El segundo elemento es el tipo de reactor asociado al reactor dado
+                tipo_reactor = reactor_data[1]
+                # Los elementos restantes son los datos del reactor
+                reactor_info = reactor_data[2:]
+                # Crear el objeto Reactor con los datos obtenidos
+                reactor = Reactor(reactor_id, nombre_reactor, tipo_reactor, *reactor_info)
+                return reactor
+            else:
+                return None
+        except Exception as e:
+            print("Error estrayendo todos los reaactores asociado al tipo del reactor_ID:", e)
+            return None      
