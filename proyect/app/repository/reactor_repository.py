@@ -20,4 +20,16 @@ class ReactorRepository:
             print ("Error creando el reactor:",e)
             self.connection.rollback()
             return None
-    
+    def reactor_by_id(self,reactor_id):
+        try:
+            cursor=self.connection.cursor()
+            cursor.execute("""
+                           SELECT * FROM reactores WHERE reactor_id = %s""",(reactor_id))
+            reactor_data=cursor.fetchone()
+            if reactor_data:
+                return Reactor(*reactor_data)
+            else:
+                return None
+        except Exception as e:
+            print("Error consultando la informacion de el reactor con id:",e)
+            return None
