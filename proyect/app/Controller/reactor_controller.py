@@ -1,4 +1,5 @@
 from flask import request
+from flask import jsonify
 from service.reactor_service import ReactorService
 from model.reactor import Reactor
 
@@ -28,3 +29,10 @@ def create_reactor():
     except Exception as e:
         print("Error en la creación del reactor:", e)
         return {"error": "Error en la creación del reactor"}, 500
+    
+def get_reactor_by_id(reactor_id):
+    reactor = reactor_service.get_reactor_by_id(reactor_id)
+    if reactor:
+        return jsonify(reactor.__dict__), 200
+    else:
+        return {"error": "No se encontró el reactor"}, 404

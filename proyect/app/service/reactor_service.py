@@ -8,3 +8,6 @@ class ReactorService:
         return self.reactor_repository.get_all_reactors()
     def create_reactor(self, reactor):
         return self.reactor_repository.create_reactor(reactor)
+    
+    def get_reactor_by_id(self, reactor_id):
+        return self.reactor_repository.get_reactor_by_id(reactor_id)
