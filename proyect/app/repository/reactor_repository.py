@@ -87,3 +87,17 @@ class ReactorRepository:
         except Exception as e:
             print("Error estrayendo todos los reaactores asociado al tipo del reactor_ID:", e)
             return None      
+    
+    #Eliminar un reactor existente
+    def delete_reactor(self,reactor_id):
+        try:
+            cursor=self.connection.cursor()
+            cursor.execute("""
+                           DELETE FROM reactores WHERE reactor_id = %s"""
+                           ,(reactor_id))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print("Error eliminando reactor:",e)
+            self.connection.rollback()
+            return False
