@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\proyect",
+    "\\proyect\\app",
+    "\\proyect\\app\\context",
+    "\\proyect\\app\\Controller",
+    "\\proyect\\app\\model",
+    "\\proyect\\app\\repository",
+    "\\proyect\\app\\service"
   ],
-  "SelectedNode": "\\C:\\Users\\alexa\\Source\\Repos\\tadb_202410_ex03",
+  "SelectedNode": "\\proyect\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
