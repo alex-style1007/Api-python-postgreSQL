@@ -101,3 +101,19 @@ class ReactorRepository:
             print("Error eliminando reactor:",e)
             self.connection.rollback()
             return False
+    
+    #Actualizar un reactor
+    def update_reactor(self,reactor):
+        try:
+            cursor=self.connection.cursor()
+            cursor.execute("""
+                           UPDATE reactores
+                           SET nombre_reactor= %s ,tipo_reactor= %s ,potencia_termica=%s,estado_reactor=%s,fecha_primera_reaccion=%s,ciudad=%s,pais_id=%s
+                           WHERE reactor_id=%s
+                           """(reactor.nombre_reactor,reactor.tipo_reactor,reactor.potencia_termica,reactor.estado_reactor,reactor.fecha_primera_reaccion,reactor.ciudad,reactor.pais_id,reactor.reactor_id))
+            self.connection.commit
+            return True
+        except Exception as e:
+            print("Error actualizando el reactor :",e)
+            self.connection.rollback()
+            return False
