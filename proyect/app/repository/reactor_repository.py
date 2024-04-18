@@ -4,7 +4,7 @@ from model.reactor import Reactor
 class ReactorRepository:
     def __init__(self):
         self.connection=connect_to_database()
-    
+    #CONSULTAR TODOS LOS REACTORES
     def get_all_reactores(self):
         try:
             cursor=self.connection.cursor()
@@ -17,7 +17,7 @@ class ReactorRepository:
         except Exception as e:
             print("Error consultando todos los reactores",e)
             return None
-        
+    #CRUD PARA CREAR UN REACTOR   
     def create_reactor(self,reactor):
         try:
             cursor=self.connection.cursor()
@@ -33,7 +33,7 @@ class ReactorRepository:
             print ("Error creando el reactor:",e)
             self.connection.rollback()
             return None
-        
+    #CRUD PARA CONSULTAR UN REACTOR POR ID   
     def reactor_by_id(self,reactor_id):
         try:
             cursor=self.connection.cursor()
@@ -47,4 +47,17 @@ class ReactorRepository:
         except Exception as e:
             print("Error consultando la informacion de el reactor con id:",e)
             return None
-        
+    #CRUD PARA TRAER TODOS LOS TIPOS DE REACTORES REGISTRADOS   
+    def get_all_types_reactor(self):
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                SELECT DISTINCT tipo_reactor FROM reactores
+            """)
+            types_data = cursor.fetchall()
+            types = [row[0] for row in types_data]
+            return types
+        except Exception as e:
+            print("Error fetching all reactor types:", e)
+            return None
+           
