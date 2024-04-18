@@ -1,4 +1,3 @@
-# app/controller/location_controller.py
 from service.location_service import LocationService
 
 location_service = LocationService()

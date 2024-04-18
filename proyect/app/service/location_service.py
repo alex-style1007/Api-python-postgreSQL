@@ -1,4 +1,3 @@
-# app/service/location_service.py
 from repository.location_repository import LocationRepository
 
 class LocationService:
