@@ -1,5 +1,5 @@
 from context.db_connection import connect_to_database
-from model.reactor import Reactor
+from proyect.app.models.reactorSchema import Reactor
 
 class ReactorRepository:
     def __init__(self):

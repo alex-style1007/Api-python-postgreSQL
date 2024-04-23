@@ -1,4 +1,4 @@
-from service.location_service import LocationService
+from services.location_service import LocationService
 
 location_service = LocationService()
 

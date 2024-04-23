@@ -1,17 +1,19 @@
-from flask import request
-from flask import jsonify
-from service.reactor_service import ReactorService
-from model.reactor import Reactor
+from typing import List
+from fastapi import FastAPI, status, Path, Query, Body, Depends
+from models.reactor_schema import ReactorResponseModel
+from services.reactor_service import ReactorService
+from utils.utils import get_session
 
 
-reactor_service = ReactorService()
+app = FastAPI()
 
-def get_all_reactors():
-    reactors = reactor_service.get_all_reactors()
-    if reactors:
-        return reactors
-    else:
-        return "Error al obtener todos los reactores"
+@app.get(
+        path='/reactor',
+        status_code=status.HTTP_200_OK,
+        response_model=List[ReactorResponseModel],
+)
+async def get_reactores(session = Depends(get_session)):
+    return ReactorService().get_all_reactors()
 
 
 def create_reactor():

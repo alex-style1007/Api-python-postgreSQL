@@ -1,8 +1,8 @@
 from flask import flask
-from service.reactor_service import ReactorService
-from service.location_service import LocationService
-from Controller import reactor_controller
-from Controller import location_controller 
+from services.reactor_service import ReactorService
+from services.location_service import LocationService
+from controllers import reactor_controller
+from controllers import location_controller 
 from context.db_connection import connect_to_database
 
 app=flask(__name__)
