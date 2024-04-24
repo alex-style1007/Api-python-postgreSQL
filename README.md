@@ -1,16 +1,39 @@
 # tadb_202410_ex03
-# Estructura de Carpetas de un Proyecto Flask
 
-- **app/**
-  - **Controller/**: Contiene los controladores de la aplicación Flask, que manejan las rutas y las solicitudes HTTP.
+# Importante
+Este proyecto se realizó utilizando el lenguaje de programación Python y el Motor de Base de datos Postgres
+- Con python se utilizaron librerías como FastAPI para la creación de la API, sqlalchemy para la interacción con la base de datos de manera programática y orientada a objetos (ORM).
+
+# Estructura de Carpetas del Proyecto
+
+- **project/app/**
+  - **context/**: Contiene la clase Session, define la configuración y la gestión del contexto de la aplicación, incluida la conexión a la base de datos.
+  - **Controller/**: Contiene los controladores de la aplicación, que manejan las rutas y las solicitudes HTTP.
   - **model/**: Contiene las definiciones de los modelos de datos de la aplicación.
-  - **repository/**: Contiene los repositorios que interactúan con la base de datos.
+    - **model/reactor_schema.py**: Son los modelos con los cuales van a retornar las consultas que realice el usuario.
+    - **model/reacto.py**: Es la definición del ORM para realizar el mapeo de las tablas.
+  - **repositories/**: Contiene los repositorios que interactúan con la base de datos.
   - **service/**: Contiene los servicios que implementan la lógica de negocio de la aplicación.
   - **context.py**: Define la configuración y la gestión del contexto de la aplicación, incluida la conexión a la base de datos.
-  - **main.py** (o **app.py**): Punto de entrada principal de la aplicación Flask, donde se crea la instancia de la aplicación y se configuran las rutas.
-  - **config.py**: Archivo de configuración de la aplicación, que define variables de configuración como las claves secretas, las configuraciones de la base de datos, etc.
 - **README.md**: Archivo de documentación que proporciona información sobre el proyecto, cómo configurarlo, ejecutarlo y usarlo.
-
 - **.gitignore**: Archivo que especifica qué archivos y directorios deben ser ignorados por Git durante el versionado del proyecto.
-
 - **.env**: Archivo que contiene variables de entorno para la configuración local del proyecto, como claves secretas, configuraciones de la base de datos, etc.
+
+# Pasos para la Ejecución
+1. Crear el entorno virtual:
+- python -m pipenv shell o pipenv shell
+
+2. Importar las siguientes librerías en el entorno virtual:
+  - pip install fastapi
+  - pip install sqlalchemy
+  - pip install pydantic
+  - pip install fastapi uvicorn sqlalchemy pydantic 
+  - pip install psycopg2  
+  - pip install pipenv
+  
+3. Ejecutar la app:
+  - python -m uvicorn project.app.controllers.reactor_controller:app --port 1234
+  ![alt text](image.png)
+
+
+
