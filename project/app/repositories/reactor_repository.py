@@ -9,14 +9,8 @@ class ReactorRelationalRepository:
 
     # 1. Obtener reactores registrados
     def get_all_reactors(self):
-        results = self.session.query(Reactor, Estado.estado, Ubicacion.ciudad, Pais.pais, TipoReactor.tipo).join(
-            Estado, Reactor.id_estado == Estado.id, isouter=True).join(
-                TipoReactor, Reactor.id_tipo_reactor == TipoReactor.id, isouter=True
-            ).join(
-                Ubicacion, Reactor.id_ubicacion == Ubicacion.id, isouter=True
-            ).join(
-                Pais, Ubicacion.id_pais == Pais.id, isouter=True
-            ).all()
+        full_query = self.get_full_query()
+        results = full_query.all()
         response = []
         for result in results:
             reactor = self.model_as_dict(result[0])
@@ -34,21 +28,18 @@ class ReactorRelationalRepository:
 
     # 2. Obtener un reactor por Id
     def get_reactor_by_id(self, id: int):
-        result = self.session.query(Reactor, Estado.estado, Ubicacion.ciudad, Pais.pais, TipoReactor.tipo).join(
-            Estado, Reactor.id_estado == Estado.id, isouter=True).join(
-                TipoReactor, Reactor.id_tipo_reactor == TipoReactor.id, isouter=True
-            ).join(
-                Ubicacion, Reactor.id_ubicacion == Ubicacion.id, isouter=True
-            ).join(
-                Pais, Ubicacion.id_pais == Pais.id, isouter=True
-            ).filter(Reactor.id == id).first()
-        return {
-            **self.model_as_dict(result[0]),
-            'estado': result[1],
-            'ciudad': result[2],
-            'pais': result[3],
-            'tipo': result[4]
-        }
+        full_query = self.get_full_query()
+        result = full_query.filter(Reactor.id == id).first()
+        if result is not None:
+            return {
+                **self.model_as_dict(result[0]),
+                'estado': result[1],
+                'ciudad': result[2],
+                'pais': result[3],
+                'tipo': result[4]
+            }
+        return {'message': f'El reactor con id {id} no existe'}
+    
 
     # 3. Crear un nuevo reactor
     def create_reactor(self, reactor: dict):
@@ -61,9 +52,11 @@ class ReactorRelationalRepository:
     # 4. Actualizar un reactor existente.
     def update_reactor(self, reactor: dict, reactor_id: int):
         reactor_item = self.get_reactor_foreign_keys(reactor)
-        old_reactors = self.session.query(Reactor).filter(Reactor.id == reactor_id).first()
+        old_reactor = self.session.query(Reactor).filter(Reactor.id == reactor_id).first()
+        if old_reactor is None:
+            return {'message': f'El reactor con id {reactor_id} no existe'} 
         for key, value in reactor_item.items():
-            setattr(old_reactors, key, value)
+            setattr(old_reactor, key, value)
         self.session.commit()
         return {'message': f'el reactor con id {reactor_id} fue actualizado con éxito',
                 'reactor': {"id":reactor_id, **reactor}}
@@ -71,9 +64,11 @@ class ReactorRelationalRepository:
     # 5. Eliminar un reactor existente
     def delete_reactor_by_id(self, id: int):
         reactor = self.session.query(Reactor).filter(Reactor.id == id).first()
-        self.session.delete(reactor)
-        self.session.commit()
-        return {'message': f'El reactor con id {id} fue eliminado con éxito'}
+        if reactor is not None:
+            self.session.delete(reactor)
+            self.session.commit()
+            return {'message': f'El reactor con id {id} fue eliminado con éxito'}
+        return {'message': f'El reactor con id {id} no existe'}
     
     # 6. Obtener tipos de reactores registrados
     def get_all_reactor_types(self):
@@ -90,6 +85,8 @@ class ReactorRelationalRepository:
             TipoReactor.id == Reactor.id_tipo_reactor,
             isouter=True
             ).filter(Reactor.id == reactor_id).first()
+        if reactor is None:
+            return {'message': f'El reactor con id {reactor_id} no existe'}
         full_query = self.get_full_query()
         results = full_query.filter(Reactor.id_tipo_reactor == reactor[0]).all()
         response = []
@@ -125,6 +122,8 @@ class ReactorRelationalRepository:
             Ubicacion.id == Reactor.id_ubicacion,
             isouter=True
             ).filter(Reactor.id == reactor_id).first()
+        if reactor is None:
+            return {'message': f'El reactor con id {reactor_id} no existe'}
         full_query = self.get_full_query()
         results = full_query.filter(Reactor.id_ubicacion == reactor[0]).all()
         response = []
