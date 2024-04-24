@@ -25,7 +25,6 @@ class Ubicacion(Base):
     ciudad = Column(String(50))
     id_pais = Column(Integer, ForeignKey('examen.paises.id'))
 
-
 class Estado(Base):
     __tablename__ = 'estados'
     __table_args__ = {'schema': 'examen'}

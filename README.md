@@ -19,7 +19,15 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
 - **.gitignore**: Archivo que especifica qué archivos y directorios deben ser ignorados por Git durante el versionado del proyecto.
 - **.env**: Archivo que contiene variables de entorno para la configuración local del proyecto, como claves secretas, configuraciones de la base de datos, etc.
 
+- **Sobre los Datos**
+  
+  - **datos/tablas.sql**: Se describe la creación de las tablas en base al diagrama en un esquema específico.
+  - **datos/tabla_sin_normalizar.sql**: Es la creación de una tabla donde se importan los datos sin realizar ningun procesos de normalización, es decir, importamos el archivo "IDEA_Reactores_Nucleares_Investigacion.csv"
+  - **datos/abastecimiento.sql**: Son las querys que se crearon para abastecer las tablas en el diseño relacional. 
+  - **datos/IDEA_Reactores_Nucleares_Investigacion.csv**: Es la base de datos de los reactores, en esta, por facilidad y con la idea de importar la totalidad de los datos, se creó de forma manual desde el csv una columna con el id.
+
 # Pasos para la Ejecución
+
 1. Crear el entorno virtual:
 - python -m pipenv shell o pipenv shell
 
@@ -34,6 +42,12 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
 3. Ejecutar la app:
   - python -m uvicorn project.app.controllers.reactor_controller:app --port 1234
   ![alt text](image.png)
+
+  - Entrar en la dirección (local host) y agregar la extensión /docs
+  ![alt text](image-1.png)
+
+  ![alt text](image-2.png)
+
 
 
 
