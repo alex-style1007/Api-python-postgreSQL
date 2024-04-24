@@ -1,4 +1,4 @@
-# Archivos y directorios generados autom·ticamente
+# Archivos y directorios generados autom√°ticamente
 __pycache__/
 *.pyc
 *.pyo
@@ -15,7 +15,7 @@ env/
 # Archivos de registro
 *.log
 
-# Archivos de compilaciÛn y resultados de pruebas
+# Archivos de compilaci√≥n y resultados de pruebas
 *.pyc
 *.pyo
 *.pyd
@@ -35,6 +35,9 @@ MANIFEST
 *.manifest
 *.spec
 
-# Carpetas especÌficas a tu entorno o herramientas
+# Carpetas espec√≠ficas a tu entorno o herramientas
 .idea/
 .vscode/
+
+#Pipenv
+Pipfile
