@@ -28,6 +28,8 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
 
 # Pasos para la Ejecución
 
+Tener en cuenta la instalación de python y sus complementos
+
 1. Crear el entorno virtual:
 - instalar pipenv: pip install pipenv
 - python -m pipenv shell o pipenv shell
@@ -44,6 +46,8 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
 
   ![alt text](image-2.png)
 
+# Resultados
+Se deja el archivo de word #Evidencias de los resultados.docx" el cual se puedes descargar y evidenciar capturas de los resultados
 
 
 
