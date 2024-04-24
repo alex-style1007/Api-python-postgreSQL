@@ -29,6 +29,7 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
 # Pasos para la Ejecución
 
 1. Crear el entorno virtual:
+- instalar pipenv: pip install pipenv
 - python -m pipenv shell o pipenv shell
 
 2. Importar las siguientes librerías en el entorno virtual:
@@ -37,7 +38,6 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
   - pip install pydantic
   - pip install fastapi uvicorn sqlalchemy pydantic 
   - pip install psycopg2  
-  - pip install pipenv
   
 3. Ejecutar la app:
   - python -m uvicorn project.app.controllers.reactor_controller:app --port 1234
