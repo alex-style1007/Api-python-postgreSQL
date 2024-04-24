@@ -29,3 +29,6 @@ class ReactorCreateModel(BaseModel):
     estado:                     str
     ciudad:                     Union[str, None]
     pais:                       str
+
+class NotExistingReactorId(BaseModel):
+    message:                    str
