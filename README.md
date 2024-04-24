@@ -47,7 +47,7 @@ Tener en cuenta la instalación de python y sus complementos
   ![alt text](image-2.png)
 
 # Resultados
-Se deja el archivo de word #Evidencias de los resultados.docx" el cual se puedes descargar y evidenciar capturas de los resultados
+Se deja el archivo de word "Evidencias de los resultados.docx" el cual se puedes descargar y evidenciar capturas de los resultados
 
 
 
