@@ -1,6 +1,6 @@
-from typing import List
-from fastapi import FastAPI, status, Path, Query, Body, Depends
-from project.app.models.reactor_schema import ReactorResponseModel, ReactorTypeResponseModel, LocationResponseModel, ReactorCreateModel
+from typing import List, Union
+from fastapi import FastAPI, status, Path, Query, Body
+from project.app.models.reactor_schema import ReactorResponseModel, ReactorTypeResponseModel, LocationResponseModel, ReactorCreateModel, NotExistingReactorId
 from project.app.services.reactor_service import ReactorService
 from project.app.exceptions.exceptions import Exceptions
 
@@ -40,7 +40,7 @@ async def get_all_locations():
 @app.get(
         path='/reactors/types/{id}',
         status_code=status.HTTP_200_OK,
-        response_model=List[ReactorResponseModel],
+        response_model=Union[List[ReactorResponseModel], NotExistingReactorId],
 )
 async def get_reactors_with_same_reactor_type_by_id(id: int):
     return ReactorService().get_reactors_with_same_reactor_type_by_id(id)
@@ -58,7 +58,7 @@ async def get_reactors_by_location(country: str = Query(default=None), city: str
 @app.get(
         path='/reactors/location/{id}',
         status_code=status.HTTP_200_OK,
-        response_model=List[ReactorResponseModel],
+        response_model=Union[List[ReactorResponseModel], NotExistingReactorId],
 )
 async def get_reactors_with_same_location_by_id(id: int):
     return ReactorService().get_reactors_with_same_location_by_id(id)
@@ -67,7 +67,7 @@ async def get_reactors_with_same_location_by_id(id: int):
 @app.get(
         path='/reactors/{id}',
         status_code=status.HTTP_200_OK,
-        response_model=ReactorResponseModel,
+        response_model=Union[ReactorResponseModel, NotExistingReactorId]
 )
 async def get_reactor_by_id(id: int):
     return ReactorService().get_reactor_by_id(id)
