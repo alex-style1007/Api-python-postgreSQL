@@ -33,11 +33,7 @@ Este proyecto se realizó utilizando el lenguaje de programación Python y el Mo
 - python -m pipenv shell o pipenv shell
 
 2. Importar las siguientes librerías en el entorno virtual:
-  - pip install fastapi
-  - pip install sqlalchemy
-  - pip install pydantic
-  - pip install fastapi uvicorn sqlalchemy pydantic 
-  - pip install psycopg2  
+  - pip install fastapi uvicorn sqlalchemy pydantic psycopg2
   
 3. Ejecutar la app:
   - python -m uvicorn project.app.controllers.reactor_controller:app --port 1234
