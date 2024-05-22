@@ -1,14 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\proyect",
-    "\\proyect\\app",
-    "\\proyect\\app\\context",
-    "\\proyect\\app\\Controller",
-    "\\proyect\\app\\model",
-    "\\proyect\\app\\repository",
-    "\\proyect\\app\\service"
+    "\\project",
+    "\\project\\app",
+    "\\project\\app\\context",
+    "\\proyect"
   ],
-  "SelectedNode": "\\proyect\\.gitignore",
+  "SelectedNode": "\\project\\app\\context\\db_connection.py",
   "PreviewInSolutionExplorer": false
 }
