@@ -1,4 +1,4 @@
-# tadb_202410_ex03
+# API CON PYTHON Y POSTGRESL
 
 # Importante
 Este proyecto se realizó utilizando el lenguaje de programación Python y el Motor de Base de datos Postgres
